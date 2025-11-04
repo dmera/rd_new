@@ -274,6 +274,167 @@ body.theme-light .section-portfolio .card:hover { background: #727272 !important
 .badge { display: inline-block; padding: 4px 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }
 
 @media (max-width: 640px) { .cards { max-width: 450px; margin: 0 auto; } }
+
+/* Mobile/Tablet: Display portfolio cards in hover state by default */
+@media (max-width: 1199px) {
+  /* Override global card hover rules */
+  .section-portfolio .card,
+  .section-portfolio .card:hover,
+  .section-portfolio .card:active,
+  .section-portfolio .card:focus,
+  .section-portfolio .card-link:hover .card,
+  .section-portfolio .card-link:active .card {
+    background: #727272 !important;
+    color: #ffffff !important;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1) !important;
+    transform: scale(1.01) !important;
+    transition: none !important;
+    pointer-events: auto;
+  }
+  
+  /* Text colors from hover state - override all hover rules */
+  .section-portfolio .card .card-title,
+  .section-portfolio .card .card-kicker,
+  .section-portfolio .card .card-text,
+  .section-portfolio .card:hover .card-title,
+  .section-portfolio .card:hover .card-kicker,
+  .section-portfolio .card:hover .card-text,
+  .section-portfolio .card:active .card-title,
+  .section-portfolio .card:active .card-kicker,
+  .section-portfolio .card:active .card-text {
+    color: #ffffff !important;
+    transition: none !important;
+  }
+  
+  /* Custom shadow colors for each card - override all hover states and prevent any shadow changes */
+  .section-portfolio .card-quality-quanta,
+  .section-portfolio .card-quality-quanta:hover,
+  .section-portfolio .card-quality-quanta:active,
+  .section-portfolio .card-quality-quanta:focus,
+  .section-portfolio .card-link:hover .card-quality-quanta,
+  .section-portfolio .card-link:active .card-quality-quanta {
+    box-shadow: 12px 12px 12px rgba(243, 193, 33, 1) !important;
+    transition: none !important;
+  }
+  .section-portfolio .card-valuechains,
+  .section-portfolio .card-valuechains:hover,
+  .section-portfolio .card-valuechains:active,
+  .section-portfolio .card-valuechains:focus,
+  .section-portfolio .card-link:hover .card-valuechains,
+  .section-portfolio .card-link:active .card-valuechains {
+    box-shadow: 12px 12px 12px rgba(65, 218, 174, 1) !important;
+    transition: none !important;
+  }
+  .section-portfolio .card-tea,
+  .section-portfolio .card-tea:hover,
+  .section-portfolio .card-tea:active,
+  .section-portfolio .card-tea:focus,
+  .section-portfolio .card-link:hover .card-tea,
+  .section-portfolio .card-link:active .card-tea {
+    box-shadow: 12px 12px 12px rgba(9, 225, 192, 1) !important;
+    transition: none !important;
+  }
+  .section-portfolio .card-kanzlei21,
+  .section-portfolio .card-kanzlei21:hover,
+  .section-portfolio .card-kanzlei21:active,
+  .section-portfolio .card-kanzlei21:focus,
+  .section-portfolio .card-link:hover .card-kanzlei21,
+  .section-portfolio .card-link:active .card-kanzlei21 {
+    box-shadow: 12px 12px 12px rgba(255, 105, 105, 1) !important;
+    transition: none !important;
+  }
+  .section-portfolio .card-cybersecurity,
+  .section-portfolio .card-cybersecurity:hover,
+  .section-portfolio .card-cybersecurity:active,
+  .section-portfolio .card-cybersecurity:focus,
+  .section-portfolio .card-link:hover .card-cybersecurity,
+  .section-portfolio .card-link:active .card-cybersecurity {
+    box-shadow: 12px 12px 12px rgba(28, 52, 183, 1) !important;
+    transition: none !important;
+  }
+  
+  /* Ensure custom shadows are maintained on hover - explicitly set them again */
+  .section-portfolio .card-link:hover .card-quality-quanta,
+  .section-portfolio .card-link:active .card-quality-quanta,
+  .section-portfolio .card-link:focus .card-quality-quanta {
+    box-shadow: 12px 12px 12px rgba(243, 193, 33, 1) !important;
+  }
+  .section-portfolio .card-link:hover .card-valuechains,
+  .section-portfolio .card-link:active .card-valuechains,
+  .section-portfolio .card-link:focus .card-valuechains {
+    box-shadow: 12px 12px 12px rgba(65, 218, 174, 1) !important;
+  }
+  .section-portfolio .card-link:hover .card-tea,
+  .section-portfolio .card-link:active .card-tea,
+  .section-portfolio .card-link:focus .card-tea {
+    box-shadow: 12px 12px 12px rgba(9, 225, 192, 1) !important;
+  }
+  .section-portfolio .card-link:hover .card-kanzlei21,
+  .section-portfolio .card-link:active .card-kanzlei21,
+  .section-portfolio .card-link:focus .card-kanzlei21 {
+    box-shadow: 12px 12px 12px rgba(255, 105, 105, 1) !important;
+  }
+  .section-portfolio .card-link:hover .card-cybersecurity,
+  .section-portfolio .card-link:active .card-cybersecurity,
+  .section-portfolio .card-link:focus .card-cybersecurity {
+    box-shadow: 12px 12px 12px rgba(28, 52, 183, 1) !important;
+  }
+  
+  /* Dark mode - override all hover states */
+  body.theme-dark .section-portfolio .card,
+  body.theme-dark .section-portfolio .card:hover,
+  body.theme-dark .section-portfolio .card:active {
+    background: #2e2e2e !important;
+    color: #ffffff !important;
+    transform: scale(1.01) !important;
+    transition: none !important;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .section-portfolio .card,
+    .section-portfolio .card:hover,
+    .section-portfolio .card:active {
+      background: #2e2e2e !important;
+      color: #ffffff !important;
+      transform: scale(1.01) !important;
+      transition: none !important;
+    }
+  }
+  
+  /* Light mode - override all hover states */
+  body.theme-light .section-portfolio .card,
+  body.theme-light .section-portfolio .card:hover,
+  body.theme-light .section-portfolio .card:active {
+    background: #727272 !important;
+    color: #ffffff !important;
+    transform: scale(1.01) !important;
+    transition: none !important;
+  }
+  
+  /* Images at full opacity (as if hovered) - no change on hover */
+  .section-portfolio .card-media img,
+  .section-portfolio .card:hover .card-media img,
+  .section-portfolio .card:active .card-media img {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  
+  body.theme-dark .section-portfolio .card-media img,
+  body.theme-dark .section-portfolio .card:hover .card-media img,
+  body.theme-dark .section-portfolio .card:active .card-media img {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .section-portfolio .card-media img,
+    .section-portfolio .card:hover .card-media img,
+    .section-portfolio .card:active .card-media img {
+      opacity: 1 !important;
+      transition: none !important;
+    }
+  }
+}
 @media (min-width: 641px) and (max-width: 1199px) { .cards { max-width: 650px; margin: 0 auto; } }
 @media (min-width: 1200px) { .cards { grid-template-columns: 1fr 1fr; } }
 
@@ -473,23 +634,21 @@ body.theme-light .section-portfolio .card:hover { background: #727272 !important
   display: none; 
 }
 
-/* Hide floating nav inside privacy-hero on smaller screens */
-@media (max-width: 1199px) {
-  .privacy-hero .floating-nav {
-    display: none !important;
-  }
+/* Hide floating nav on privacy page - temporarily hidden */
+.privacy-hero .floating-nav {
+  display: none !important;
 }
 
-/* Two-column layout for privacy page on large screens */
+/* Privacy page layout - single column since floating nav is hidden */
 @media (min-width: 1200px) {
   .privacy-hero .container {
-    grid-template-columns: 1fr 220px;
+    grid-template-columns: 1fr;
     gap: 40px;
     align-items: start;
   }
   
   .privacy-hero .section-title {
-    grid-column: 1 / -1;
+    grid-column: 1;
   }
   
   .privacy-content {
@@ -498,11 +657,11 @@ body.theme-light .section-portfolio .card:hover { background: #727272 !important
   
   .privacy-hero .floating-nav {
     position: sticky !important;
-    display: block !important;
+    display: none !important;
     max-height: none;
     align-self: start;
     top: 100px;
-    grid-column: 2;
+    grid-column: 1;
     max-width: none;
     width: 100%;
     right: auto !important;
@@ -520,6 +679,7 @@ body.theme-light .section-portfolio .card:hover { background: #727272 !important
   .privacy-hero .floating-nav {
     position: fixed !important;
     top: 100px !important;
+    display: none !important;
     /* Place it in the right gutter outside the centered 1160px container */
     right: calc((100vw - 1160px) / 2 - 16px) !important;
     grid-column: auto;

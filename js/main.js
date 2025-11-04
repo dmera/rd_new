@@ -25,10 +25,16 @@
 
 		// Swap portfolio card images (default only; hover handled separately)
 		const portfolioImgs = document.querySelectorAll('.card-media img[data-light-src][data-dark-src]');
+		const isMobileTablet = window.matchMedia('(max-width: 1199px)').matches;
 		portfolioImgs.forEach((img) => {
 			const lightSrc = img.getAttribute('data-light-src');
 			const darkSrc = img.getAttribute('data-dark-src');
-			if (lightSrc && darkSrc) {
+			const hoverSrc = img.getAttribute('data-hover-src');
+			
+			// On mobile/tablet, use hover images by default
+			if (isMobileTablet && hoverSrc) {
+				img.setAttribute('src', hoverSrc);
+			} else if (lightSrc && darkSrc) {
 				img.setAttribute('src', isDark ? darkSrc : lightSrc);
 			}
 		});
@@ -313,6 +319,8 @@
 
 	// Card hover image functionality
 	const cards = document.querySelectorAll('.card');
+	const isMobileTablet = window.matchMedia('(max-width: 1199px)').matches;
+	
 	cards.forEach(card => {
 		const img = card.querySelector('.card-media img');
 		if (img) {
@@ -328,14 +336,48 @@
 			
 			const hoverSrc = dataHover || img.src.replace('.png', '-hover.png').replace('.jpg', '-hover.jpg').replace('.svg', '-hover.svg');
 			
-			card.addEventListener('mouseenter', () => {
+			// On mobile/tablet, use hover images by default
+			if (isMobileTablet && hoverSrc) {
 				img.src = hoverSrc;
-			});
+			}
 			
-			card.addEventListener('mouseleave', () => {
-				img.src = getOriginalSrc();
-			});
+			// Only add hover listeners on desktop
+			if (!isMobileTablet) {
+				card.addEventListener('mouseenter', () => {
+					img.src = hoverSrc;
+				});
+				
+				card.addEventListener('mouseleave', () => {
+					img.src = getOriginalSrc();
+				});
+			}
 		}
+	});
+	
+	// Update images on resize (in case user switches between mobile and desktop)
+	let resizeTimeout;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(() => {
+			const isMobileTabletNow = window.matchMedia('(max-width: 1199px)').matches;
+			const cardsNow = document.querySelectorAll('.card');
+			cardsNow.forEach(card => {
+				const img = card.querySelector('.card-media img');
+				if (img) {
+					const dataHover = img.getAttribute('data-hover-src');
+					const dataLight = img.getAttribute('data-light-src');
+					const dataDark = img.getAttribute('data-dark-src');
+					
+					if (isMobileTabletNow && dataHover) {
+						img.src = dataHover;
+					} else {
+						const currentMode = localStorage.getItem('theme') || 'system';
+						const isDark = currentMode === 'dark' || (currentMode === 'system' && getSystemTheme() === 'dark');
+						img.src = (isDark && dataDark) ? dataDark : (dataLight || img.src);
+					}
+				}
+			});
+		}, 250);
 	});
 
 	// Reveal-on-scroll (slide-up) animation
